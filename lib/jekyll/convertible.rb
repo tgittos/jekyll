@@ -24,14 +24,18 @@ module Jekyll
     def read_yaml(base, name)
       self.content = File.read(File.join(base, name))
 
-      if self.content =~ /^(---\s*\n.*?\n?)^(---\s*$\n?)/m
-        self.content = $POSTMATCH
+      begin
+        if self.content =~ /^(---\s*\n.*?\n?)^(---\s*$\n?)/m
+          self.content = self.content[($1.size + $2.size)..-1]
 
-        begin
-          self.data = YAML.load($1)
-        rescue => e
-          puts "YAML Exception: #{e.message}"
+          begin
+            self.data = YAML.load($1)
+          rescue => e
+            puts "YAML Exception: #{e.message}"
+          end
         end
+      rescue ArgumentError => ae
+        puts "The contents of post #{name} are throwing an exception: #{ae.message}"
       end
 
       self.data ||= {}
