@@ -4,6 +4,7 @@ require 'rubygems'
 require 'hpricot'
 require 'fileutils'
 require 'yaml'
+require 'time'
 
 module Jekyll
   # This importer takes a wordpress.xml file, which can be exported from your

@@ -1,5 +1,6 @@
 require 'yaml'
 require 'fileutils'
+require 'time'
 
 module Jekyll
   module Marley
