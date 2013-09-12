@@ -153,6 +153,9 @@ module Jekyll
       case input
       when Time
         input
+      when Date
+        # some YAML parsers output Date when parsing dates
+        input.to_time
       when String
         Time.parse(input)
       else
