@@ -1,5 +1,4 @@
 module Jekyll
-
   class Plugin
     PRIORITIES = { :lowest => -100,
                    :low => -10,
@@ -34,6 +33,7 @@ module Jekyll
     #
     # Returns the Symbol priority.
     def self.priority(priority = nil)
+      @priority ||= nil
       if priority && PRIORITIES.has_key?(priority)
         @priority = priority
       end
@@ -72,5 +72,4 @@ module Jekyll
       # no-op for default
     end
   end
-
 end
